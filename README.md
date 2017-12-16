@@ -26,16 +26,16 @@ Add the following to `layout.html` that all of your pages extend, or to `outerLa
 
 ```nunjucks
 {% if data.piece %}
-  {% if data.piece.seoPageTitle %}
-    {% set title = data.piece.seoPageTitle %}
+  {% if data.piece.seoTitle %}
+    {% set title = data.piece.seoTitle %}
   {% else %}
     {% set title = data.piece.title %}
   {% endif %}
 {% else %}
-  {% if data.page.seoPageTitle %}
-    {% set title = data.page.seoPageTitle %}
-  {% elif data.global.seoPageTitle %}
-    {% set title = data.global.seoPageTitle %}
+  {% if data.page.seoTitle %}
+    {% set title = data.page.seoTitle %}
+  {% elif data.global.seoTitle %}
+    {% set title = data.global.seoTitle %}
   {% else %}
     {% set title = data.page.title %}
   {% endif %}
@@ -45,21 +45,21 @@ Add the following to `layout.html` that all of your pages extend, or to `outerLa
 
 {% block extraHead %}
   {% if data.piece %}
-    {% if data.piece.seoPageDescription %}
-      {% set description = data.piece.seoPageDescription %}
-    {% elif data.global.seoPageDescription %}
-      {% set description = data.global.seoPageDescription %}
+    {% if data.piece.seoDescription %}
+      {% set description = data.piece.seoDescription %}
+    {% elif data.global.seoDescription %}
+      {% set description = data.global.seoDescription %}
     {% endif %}
   {% else %}
-    {% if data.page.seoPageDescription %}
-      {% set description = data.page.seoPageDescription %}
-    {% elif data.global.seoPageDescription %}
-      {% set description = data.global.seoPageDescription %}
+    {% if data.page.seoDescription %}
+      {% set description = data.page.seoDescription %}
+    {% elif data.global.seoDescription %}
+      {% set description = data.global.seoDescription %}
     {% endif %}
   {% endif %}
-  {% if data.piece.seoPageDescription or
-        data.page.seoPageDescription or
-        data.global.seoPageDescription %}
+  {% if data.piece.seoDescription or
+        data.page.seoDescription or
+        data.global.seoDescription %}
     <meta name="description" content="{{ description }}" />
   {% endif %}
 {% endblock %}
