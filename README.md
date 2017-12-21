@@ -22,6 +22,17 @@ const apos = require('apostrophe')({
   }
 ```
 
+If you choose to disable fields for a piece or page you can do so by setting `seo: false` on the module.
+
+```js
+module.exports = {
+  name: 'person',
+  label: 'Person',
+  pluralLabel: 'People',
+  seo: false
+};
+```
+
 Add the following to `layout.html` that all of your pages extend, or to `outerLayout.html` if you have one in `apostrophe-templates/views/`.
 
 ```nunjucks
