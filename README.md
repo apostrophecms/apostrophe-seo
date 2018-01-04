@@ -22,7 +22,7 @@ const apos = require('apostrophe')({
   }
 ```
 
-If you choose to disable fields for a piece or page you can do so by setting `seo: false` on the module.
+If you choose to disable fields for a piece or page you can do so by setting `seo: false` on the module. `apostrophe-files`, `apostrophe-global`, `apostrophe-groups`, `apostrophe-images`, `apostrophe-users` have `seo: false` configured by default.
 
 ```js
 module.exports = {
@@ -45,8 +45,6 @@ Add the following to `layout.html` that all of your pages extend, or to `outerLa
 {% else %}
   {% if data.page.seoTitle %}
     {% set title = data.page.seoTitle %}
-  {% elif data.global.seoTitle %}
-    {% set title = data.global.seoTitle %}
   {% else %}
     {% set title = data.page.title %}
   {% endif %}
@@ -58,19 +56,14 @@ Add the following to `layout.html` that all of your pages extend, or to `outerLa
   {% if data.piece %}
     {% if data.piece.seoDescription %}
       {% set description = data.piece.seoDescription %}
-    {% elif data.global.seoDescription %}
-      {% set description = data.global.seoDescription %}
     {% endif %}
   {% else %}
     {% if data.page.seoDescription %}
       {% set description = data.page.seoDescription %}
-    {% elif data.global.seoDescription %}
-      {% set description = data.global.seoDescription %}
     {% endif %}
   {% endif %}
   {% if data.piece.seoDescription or
-        data.page.seoDescription or
-        data.global.seoDescription %}
+        data.page.seoDescription %}
     <meta name="description" content="{{ description }}" />
   {% endif %}
 {% endblock %}
