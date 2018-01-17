@@ -20,6 +20,7 @@ const apos = require('apostrophe')({
   modules: {
     'apostrophe-seo': {}
   }
+});
 ```
 
 If you choose to disable fields for a piece or page you can do so by setting `seo: false` on the module. `apostrophe-files`, `apostrophe-global`, `apostrophe-groups`, `apostrophe-images`, `apostrophe-users` have `seo: false` configured by default.
@@ -67,4 +68,27 @@ Add the following to `layout.html` that all of your pages extend, or to `outerLa
     <meta name="description" content="{{ description }}" />
   {% endif %}
 {% endblock %}
+```
+
+If you would like to configure additional fields to allow an editor to add a Google Analytics tracking ID and a Google site verification ID you can do so by setting `seoGoogleFields: true` in `apostrophe-global` in your project.
+
+Add the following to `layout.html` that all of your pages extend, or to `outerLayout.html` if you have one in `apostrophe-templates/views/` to add configurable Google Analytics and Google site verification.
+
+```nunjucks
+  {% block extraHead %}
+    {% if data.global.seoGoogleVerificationId %}
+      <meta name="google-site-verification" content="{{ data.global.seoGoogleVerificationId }}" />
+    {% endif %}
+  {% endblock %}
+
+   {% if data.global.seoGoogleTrackingId %}
+     <!-- Global site tag (gtag.js) - Google Analytics -->
+     <script async src="https://www.googletagmanager.com/gtag/js?id={{ data.global.seoGoogleTrackingId }}"></script>
+     <script>
+       window.dataLayer = window.dataLayer || [];
+       function gtag(){dataLayer.push(arguments);}
+       gtag('js', new Date());
+       gtag('config', '{{ data.global.seoGoogleTrackingId }}');
+     </script>
+   {% endif %}
 ```
