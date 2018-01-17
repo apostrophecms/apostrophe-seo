@@ -79,9 +79,8 @@ Add the following to `layout.html` that all of your pages extend, or to `outerLa
     {% if data.global.seoGoogleVerificationId %}
       <meta name="google-site-verification" content="{{ data.global.seoGoogleVerificationId }}" />
     {% endif %}
-  {% endblock %}
 
-   {% if data.global.seoGoogleTrackingId %}
+    {% if data.global.seoGoogleTrackingId %}
      <!-- Global site tag (gtag.js) - Google Analytics -->
      <script async src="https://www.googletagmanager.com/gtag/js?id={{ data.global.seoGoogleTrackingId }}"></script>
      <script>
@@ -91,4 +90,5 @@ Add the following to `layout.html` that all of your pages extend, or to `outerLa
        gtag('config', '{{ data.global.seoGoogleTrackingId }}');
      </script>
    {% endif %}
+  {% endblock %}
 ```
