@@ -53,6 +53,7 @@ Add the following to `layout.html` that all of your pages extend, or to `outerLa
 {% block title %}{{ title }}{% endblock %}
 
 {% block extraHead %}
+  <meta property="og:title" content="Penn Health-Tech - {{ title }}">
   {% if data.piece %}
     {% if data.piece.seoDescription %}
       {% set description = data.piece.seoDescription %}
@@ -65,6 +66,7 @@ Add the following to `layout.html` that all of your pages extend, or to `outerLa
   {% if data.piece.seoDescription or
         data.page.seoDescription %}
     <meta name="description" content="{{ description }}" />
+    <meta name="og:description" content="{{ description }}" />
   {% endif %}
 {% endblock %}
 ```
