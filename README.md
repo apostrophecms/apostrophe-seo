@@ -20,6 +20,7 @@ const apos = require('apostrophe')({
   modules: {
     'apostrophe-seo': {}
   }
+});
 ```
 
 If you choose to disable fields for a piece or page you can do so by setting `seo: false` on the module. `apostrophe-files`, `apostrophe-global`, `apostrophe-groups`, `apostrophe-images`, `apostrophe-users` have `seo: false` configured by default.
@@ -33,38 +34,28 @@ module.exports = {
 };
 ```
 
-Add the following to `layout.html` that all of your pages extend, or to `outerLayout.html` if you have one in `apostrophe-templates/views/`.
+If you would like to configure additional fields to allow an editor to add a Google Analytics tracking ID and a Google site verification ID you can do so by setting `seoGoogleFields: true` in `apostrophe-global` in your project.
+
+Add the following include to your `<head></head>` in `layout.html` that all of your pages extend, or to `outerLayout.html` if you have one in `apostrophe-templates/views/`. This will output the meta tags needed for SEO and Google Analytics/Verification configuration.
 
 ```nunjucks
-{% if data.piece %}
-  {% if data.piece.seoTitle %}
-    {% set title = data.piece.seoTitle %}
-  {% else %}
-    {% set title = data.piece.title %}
-  {% endif %}
-{% else %}
-  {% if data.page.seoTitle %}
-    {% set title = data.page.seoTitle %}
-  {% else %}
-    {% set title = data.page.title %}
-  {% endif %}
-{% endif %}
-
-{% block title %}{{ title }}{% endblock %}
-
 {% block extraHead %}
   {% if data.piece %}
-    {% if data.piece.seoDescription %}
-      {% set description = data.piece.seoDescription %}
+    {% if data.piece.seoTitle %}
+      {% set title = data.piece.seoTitle %}
+    {% else %}
+      {% set title = data.piece.title %}
     {% endif %}
   {% else %}
-    {% if data.page.seoDescription %}
-      {% set description = data.page.seoDescription %}
+    {% if data.page.seoTitle %}
+      {% set title = data.page.seoTitle %}
+    {% else %}
+      {% set title = data.page.title %}
     {% endif %}
   {% endif %}
-  {% if data.piece.seoDescription or
-        data.page.seoDescription %}
-    <meta name="description" content="{{ description }}" />
-  {% endif %}
+
+  {% block title %}{{ title }}{% endblock %}
+
+  {% include "apostrophe-seo:view.html" %}
 {% endblock %}
 ```
