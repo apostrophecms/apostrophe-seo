@@ -6,8 +6,7 @@ module.exports = {
       'apostrophe-seo-images',
       'apostrophe-seo-global',
       'apostrophe-seo-groups',
-      'apostrophe-seo-users',
-      'apostrophe-seo-redirects'
+      'apostrophe-seo-users'
     ],
     directory: 'lib/modules'
   }
