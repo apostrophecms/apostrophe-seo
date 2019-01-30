@@ -39,23 +39,23 @@ If you would like to configure additional fields to allow an editor to add a Goo
 Add the following include to your `<head></head>` in `layout.html` that all of your pages extend, or to `outerLayout.html` if you have one in `apostrophe-templates/views/`. This will output the meta tags needed for SEO and Google Analytics/Verification configuration.
 
 ```nunjucks
-{% block extraHead %}
-  {% if data.piece %}
-    {% if data.piece.seoTitle %}
-      {% set title = data.piece.seoTitle %}
-    {% else %}
-      {% set title = data.piece.title %}
-    {% endif %}
+{% if data.piece %}
+  {% if data.piece.seoTitle %}
+    {% set title = data.piece.seoTitle %}
   {% else %}
-    {% if data.page.seoTitle %}
-      {% set title = data.page.seoTitle %}
-    {% else %}
-      {% set title = data.page.title %}
-    {% endif %}
+    {% set title = data.piece.title %}
   {% endif %}
+{% else %}
+  {% if data.page.seoTitle %}
+    {% set title = data.page.seoTitle %}
+  {% else %}
+    {% set title = data.page.title %}
+  {% endif %}
+{% endif %}
 
-  {% block title %}{{ title }}{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 
+{% block extraHead %}
   {% include "apostrophe-seo:view.html" %}
 {% endblock %}
 ```
