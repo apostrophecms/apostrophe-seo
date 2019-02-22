@@ -23,6 +23,12 @@ const apos = require('apostrophe')({
 });
 ```
 
+### Options
+
+Option | Type | Default | Description
+---|---|---|---
+canonical | Boolean | `null` | Enables a canonical tag on every page set to `data._url`.
+
 If you choose to disable fields for a piece or page you can do so by setting `seo: false` on the module. `apostrophe-files`, `apostrophe-global`, `apostrophe-groups`, `apostrophe-images`, `apostrophe-users` have `seo: false` configured by default.
 
 ```js

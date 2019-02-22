@@ -16,6 +16,15 @@
 <meta name="google-site-verification" content="{{ data.global.seoGoogleVerificationId }}" />
 {% endif %}
 
+{% if apos.seo and apos.seo.getOption('canonical') %}
+  {% if data.piece %}
+    {% set seoUrl = data.piece._url %}
+  {% elif data.page %}
+    {% set seoUrl = data.page._url %}
+  {% endif %}
+  <link rel="canonical" href="{{ seoUrl }}" />
+{% endif %}
+
 {% if data.global.seoGoogleTrackingId %}
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id={{ data.global.seoGoogleTrackingId }}"></script>
