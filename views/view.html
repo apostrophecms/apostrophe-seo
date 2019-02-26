@@ -16,7 +16,7 @@
 <meta name="google-site-verification" content="{{ data.global.seoGoogleVerificationId }}" />
 {% endif %}
 
-{% if apos.seo and apos.seo.getOption('canonical') %}
+{% if apos.seo and apos.modules['apostrophe-seo'] %}
   {% if data.piece %}
     {% set seoUrl = data.piece._url %}
   {% elif data.page %}
