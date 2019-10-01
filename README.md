@@ -59,3 +59,5 @@ Add the following include to your `<head></head>` in `layout.html` that all of y
   {% include "apostrophe-seo:view.html" %}
 {% endblock %}
 ```
+
+Canonical Link allows you to select one main page that search engines should be pointed to for similar content.

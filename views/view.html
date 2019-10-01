@@ -16,6 +16,10 @@
 <meta name="google-site-verification" content="{{ data.global.seoGoogleVerificationId }}" />
 {% endif %}
 
+{% if data.page._seoCanonical  %}
+	<link rel="canonical" href="{{data.baseUrl}}{{data.page._seoCanonical.slug }}" />
+{% endif %}
+
 {% if data.global.seoGoogleTrackingId %}
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id={{ data.global.seoGoogleTrackingId }}"></script>
