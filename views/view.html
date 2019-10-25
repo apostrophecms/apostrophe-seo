@@ -12,6 +12,10 @@
   <meta name="description" content="{{ seoDescription }}" />
 {% endif %}
 
+{% if data.page.seoRobots %}
+  <meta name="robots" content="{{ data.page.seoRobots }}" />
+{% endif %}
+
 {% if data.global.seoGoogleVerificationId %}
 <meta name="google-site-verification" content="{{ data.global.seoGoogleVerificationId }}" />
 {% endif %}
