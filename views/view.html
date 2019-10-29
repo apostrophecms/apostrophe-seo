@@ -21,7 +21,7 @@
 {% endif %}
 
 {% if data.page._seoCanonical  %}
-	<link rel="canonical" href="{{data.baseUrl}}{{data.page._seoCanonical.slug }}" />
+	<link rel="canonical" href="{{data.baseUrl}}{{data.page._seoCanonical._url }}" />
 {% endif %}
 
 {% if data.global.seoGoogleTrackingId %}
