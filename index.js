@@ -1,7 +1,7 @@
 module.exports = {
   moogBundle: {
     modules: [
-      'apostrophe-seo-custom-pages',
+      'apostrophe-seo-doc-type-manager',
       'apostrophe-seo-files',
       'apostrophe-seo-images',
       'apostrophe-seo-global',
