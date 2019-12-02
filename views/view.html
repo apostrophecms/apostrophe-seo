@@ -12,8 +12,16 @@
   <meta name="description" content="{{ seoDescription }}" />
 {% endif %}
 
+{% if data.page.seoRobots %}
+  <meta name="robots" content="{{ data.page.seoRobots }}" />
+{% endif %}
+
 {% if data.global.seoGoogleVerificationId %}
 <meta name="google-site-verification" content="{{ data.global.seoGoogleVerificationId }}" />
+{% endif %}
+
+{% if data.page._seoCanonical  %}
+	<link rel="canonical" href="{{data.page._seoCanonical._url }}" />
 {% endif %}
 
 {% if data.global.seoGoogleTrackingId %}
