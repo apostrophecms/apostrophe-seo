@@ -77,3 +77,32 @@ Add the following include to your `<head></head>` in `layout.html` that all of y
 ```
 
 If you already have an `extraBody` block in the `notFound.html` view file, you'll only need to add the `{% include "apostrophe-seo:notFound.html" %}` statement somewhere in that.
+
+### 3. LD+JSON information
+
+If you want to add structured data for search engine to your pages, you can use the widget `apostrophe-seo-ldjson` by adding an area in the `show.html` template of a pieces page.
+For example:
+
+```js
+{{
+  apos.area(data.page, 'ldjson', {
+    widgets: {
+      'apostrophe-seo-ldjson': {}
+    }
+  })
+}}
+````
+
+You will also need to declare the widget in your proejct's `app.js`:
+
+```js
+require('apostrophe')({
+  modules: {
+    'apostrophe-seo': {},
+    'apostrophe-seo-ldjson-widgets': {}
+  }
+})
+```
+
+You can then configure the widget by adding static fields (i.e: "@context": "https://schema.org") or dynamic fields coming from the piece displayed in `show.html`.
+A `<script type="application/ld+json">` tag is added to your page to be parsed by search engines.

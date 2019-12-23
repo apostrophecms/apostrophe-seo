@@ -1,0 +1,28 @@
+{% if data.page.ldjson %}
+  <script type="application/ld+json">
+  {
+  {% set area = r/\|area/g %}
+  {% set array = r/\|array/g %}
+  {% set object = r/\|object/g %}
+
+  {% for item in data.page.ldjson.items[0].dynamic %}
+    {% if area.test(item.field) %}
+      {% set field = item.field.split('|')[0] %}
+      "{{ item.key }}": "{{ data.piece[field].items[0].content | striptags }}",
+    {% elseif array.test(item.field) %}
+      {% set field = item.field.split('|') %}
+      "{{ item.key }}": "{{ data.piece[field[0]][0][field[1]] }}",
+    {% elseif object.test(item.field) %}
+      {% set field = item.field.split('|') %}
+      "{{ item.key }}": "{{ data.piece[field[0]][field[1]] }}",
+    {% else %}
+      "{{ item.key }}": "{{ data.piece[item.field] }}",
+    {%- endif -%}
+  {% endfor %}
+
+  {% for item in data.page.ldjson.items[0].static %}
+    "{{ item.key }}": "{{ item.value }}" {%- if not loop.last -%},{%- endif -%}
+  {% endfor %}
+  }
+  </script>
+{% endif %}
