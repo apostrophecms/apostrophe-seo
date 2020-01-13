@@ -1,0 +1,22 @@
+// Pattern closely following that for apos schema errors
+
+.apos-seo-soft-limit
+{
+  input {
+    &:first-of-type:not(.apos-field-input-radio) {
+      // Used for warnings elsewhere in apostrophe
+      .apos-glow(@apos-gold);
+    }
+  }
+  label {
+    position: relative;
+    &:first-of-type {
+      color: @apos-gold;
+    }
+    &:first-of-type::after {
+      margin-left: 10px;
+      content: "(" attr(data-apos-seo-soft-limit-message) ")";
+      color: inherit;
+    }
+  }
+}
