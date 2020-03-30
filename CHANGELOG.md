@@ -1,3 +1,7 @@
+# 1.2.3
+
+Building on 1.2.2, we also should not output the robots meta tag at all if neither box was checked, although there is no harm in an empty one.
+
 # 1.2.2
 
 Prior to this release there were separate checkboxes for "index, follow", "noindex" and "nofollow", even though checkboxes are nonexclusive, so it was possible to pick "index, follow" and "noindex" simultaneously — an invalid combination. Beginning with this release, there is no "index, follow" option because that is the default behavior of Google and never has to be explicitly chosen. If you want your page to be crawled and indexed normally, just leave the "noindex" and "nofollow" checkboxes alone.
