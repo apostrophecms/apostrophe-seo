@@ -1,3 +1,7 @@
+# 1.2.4
+
+Updates eslint configuration to use `eslint-config-apostrophe`.
+
 # 1.2.3
 
 Building on 1.2.2, we also should not output the robots meta tag at all if neither box was checked, although there is no harm in an empty one.
