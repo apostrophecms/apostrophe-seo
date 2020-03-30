@@ -12,7 +12,7 @@
   <meta name="description" content="{{ seoDescription }}" />
 {% endif %}
 
-{% if data.page.seoRobots %}
+{% if data.page.seoRobots and data.page.seoRobots.length %}
   <meta name="robots" content="{{ data.page.seoRobots }}" />
 {% endif %}
 
