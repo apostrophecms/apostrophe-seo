@@ -45,9 +45,8 @@ If you would like to configure additional fields to allow an editor to add a Goo
 Finally, you may only want to use Google Tag Manager for all analytics and site verification needs. Set `seoTagMangerOnly: true` in `apostrophe-global` to do this. Doing so will override the other options, making their presence irrelevant if also set.
 
 ### 3. Updating views
-If you would like to configure additional fields to allow an editor to add a Google Analytics tracking ID and a Google site verification ID you can do so by setting `seoGoogleFields: true` in `apostrophe-global` in your project.
 
-Add the following include to your `<head></head>` in `layout.html` that all of your pages extend, or to `outerLayout.html` if you have one in `apostrophe-templates/views/`. This will output the meta tags needed for SEO and Google Analytics/Verification configuration. The robots meta tag will only be shown if set to something other than `index,follow` (browser already defaults to that).
+Add the following `include`  to your `<head></head>` in `layout.html` that all of your pages extend, or to `outerLayout.html` if you have one in `apostrophe-templates/views/`. This will output the meta tags needed for SEO and Google Analytics/Verification configuration. The `robots` meta tag will only be included if the related field is set to something other than `index,follow` on the page-level (browsers already default to that).
 
 ```nunjucks
 {% if data.piece %}
