@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/apostrophecms/apostrophe-seo/tree/master.svg?style=svg)](https://circleci.com/gh/apostrophecms/apostrophe-seo/tree/master)
+
 # apostrophe-seo
 
 SEO for [ApostropheCMS](http://apostrophecms.org/).
