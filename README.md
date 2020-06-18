@@ -2,7 +2,7 @@
 
 # apostrophe-seo
 
-SEO for [ApostropheCMS](http://apostrophecms.org/).
+SEO configuration for [ApostropheCMS](https://apostrophecms.com/).
 
 Add useful meta fields to all pages and pieces.
 
@@ -70,7 +70,7 @@ Add the following `include`  to your `<head></head>` in `layout.html` that all o
 {% endblock %}
 ```
 
-**The Canonical Link field** on a page or piece allows an editor to select another page that search engines should understand to be the primary version of that page or piece. [As described on Moz.com](https://moz.com/learn/seo/canonicalization):
+**The canonical link field** on a page or piece allows an editor to select another page that search engines should understand to be the primary version of that page or piece. [As described on Moz.com](https://moz.com/learn/seo/canonicalization):
 
 > A canonical tag (aka "rel canonical") is a way of telling search engines that a specific URL represents the master copy of a page. Using the canonical tag prevents problems caused by identical or "duplicate" content appearing on multiple URLs. Practically speaking, the canonical tag tells search engines which version of a URL you want to appear in search results.
 
