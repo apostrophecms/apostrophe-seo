@@ -46,7 +46,7 @@ Finally, you may only want to use Google Tag Manager for all analytics and site 
 
 ### 3. Updating views
 
-Add the following `include`  to your `<head></head>` in `layout.html` that all of your pages extend, or to `outerLayout.html` if you have one in `apostrophe-templates/views/`. This will output the meta tags needed for SEO and Google Analytics/Verification configuration. The `robots` meta tag will only be included if the related field is set to something other than `index,follow` on the page-level (browsers already default to that).
+Add the following `include`  to your `<head></head>` in `layout.html` that all of your pages extend, or to `outerLayout.html` if you have one in `apostrophe-templates/views/`. This will output the meta tags needed for SEO and Google Analytics/Verification configuration.
 
 ```nunjucks
 {% if data.piece %}
