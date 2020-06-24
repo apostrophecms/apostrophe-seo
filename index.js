@@ -1,4 +1,5 @@
 module.exports = {
+  extend: 'apostrophe-module',
   moogBundle: {
     modules: [
       'apostrophe-seo-doc-type-manager',
@@ -10,5 +11,18 @@ module.exports = {
       'apostrophe-seo-users'
     ],
     directory: 'lib/modules'
+  },
+  construct: function (self, options) {
+    self.prependSnippets = () => {
+      self.apos.templates.prepend('body', (req) => {
+        return self.partial('body-gtm', {});
+      });
+      self.apos.templates.append('head', (req) => {
+        return self.partial('head-gtm', {});
+      });
+    };
+  },
+  afterConstruct: (self) => {
+    self.prependSnippets();
   }
 };
