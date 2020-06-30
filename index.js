@@ -15,10 +15,10 @@ module.exports = {
   construct: function (self, options) {
     self.prependSnippets = () => {
       self.apos.templates.prepend('body', (req) => {
-        return self.partial('body-gtm', {});
+        return self.partial('body-snippet', {});
       });
       self.apos.templates.append('head', (req) => {
-        return self.partial('head-gtm', {});
+        return self.partial('head-snippet', {});
       });
     };
   },
