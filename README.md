@@ -44,6 +44,18 @@ If you would like to configure additional fields to allow an editor to add a Goo
 
 Finally, you may only want to use Google Tag Manager for all analytics and site verification needs. Set `seoTagMangerOnly: true` in `apostrophe-global` to do this. Doing so will override the other options, making their presence irrelevant if also set.
 
+#### Setting the `baseUrl`
+
+It is important to [set the `baseUrl` option](https://docs.apostrophecms.org/reference/core-server.html#baseurl) on your ApostropheCMS application for various reasons. In the SEO module it contributes to building the correct `canonical` link tag URL. This can be set on the main app configuration in `app.js`, however it is usually more appropriate to [set it in the `data/local.js` file](https://docs.apostrophecms.org/core-concepts/global-settings/settings.html#changing-the-value-for-a-specific-server-only) as that will contain environment/server-specific configurations.
+
+```
+// in data/local.js
+module.exports = {
+  baseUrl: 'https://example.com'
+  // or set to `http://localhost:3000` during development on your local machine.
+};
+```
+
 ### 3. Updating views
 
 Add the following `include`  to your `<head></head>` in `layout.html` that all of your pages extend, or to `outerLayout.html` if you have one in `apostrophe-templates/views/`. This will output the meta tags needed for SEO and Google Analytics/Verification configuration.

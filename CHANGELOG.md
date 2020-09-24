@@ -1,3 +1,6 @@
+# 1.3.1 - 2020-10-07
+- Adds a note about setting the `baseUrl` option in the README.
+
 # 1.3.0 - 2020-07-01
 
 - Adds Google Tag Manager support.
