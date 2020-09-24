@@ -26,6 +26,18 @@ const apos = require('apostrophe')({
 });
 ```
 
+#### Setting the `baseUrl`
+
+It is important to [set the `baseUrl` option](https://docs.apostrophecms.org/reference/core-server.html#baseurl) on your ApostropheCMS application for various reasons. In the SEO module it contributes to building the correct `canonical` link tag URL. This can be set on the main app configuration in `app.js`, however it is usually more appropriate to [set it in the `data/local.js` file](https://docs.apostrophecms.org/core-concepts/global-settings/settings.html#changing-the-value-for-a-specific-server-only) as that will contain environment/server-specific configurations.
+
+```
+// in data/local.js
+module.exports = {
+  baseUrl: 'https://example.com'
+  // or set to `http://localhost:3000` during development on your local machine.
+};
+```
+
 ### 2. Module configuration
 If you choose to disable fields for a piece or page you can do so by setting `seo: false` on the module. `apostrophe-files`, `apostrophe-global`, `apostrophe-groups`, `apostrophe-images`, `apostrophe-users` have `seo: false` configured by default.
 
@@ -43,18 +55,6 @@ module.exports = {
 If you would like to configure additional fields to allow an editor to add a Google Analytics tracking ID and a Google site verification ID you can do so by setting `seoGoogleFields: true` in `apostrophe-global` in your project. Add `seoGoogleTagManager: true` to also add a field for the Google Tag Manager ID (`seoGoogleFields` must also be `true` in this case).
 
 Finally, you may only want to use Google Tag Manager for all analytics and site verification needs. Set `seoTagMangerOnly: true` in `apostrophe-global` to do this. Doing so will override the other options, making their presence irrelevant if also set.
-
-#### Setting the `baseUrl`
-
-It is important to [set the `baseUrl` option](https://docs.apostrophecms.org/reference/core-server.html#baseurl) on your ApostropheCMS application for various reasons. In the SEO module it contributes to building the correct `canonical` link tag URL. This can be set on the main app configuration in `app.js`, however it is usually more appropriate to [set it in the `data/local.js` file](https://docs.apostrophecms.org/core-concepts/global-settings/settings.html#changing-the-value-for-a-specific-server-only) as that will contain environment/server-specific configurations.
-
-```
-// in data/local.js
-module.exports = {
-  baseUrl: 'https://example.com'
-  // or set to `http://localhost:3000` during development on your local machine.
-};
-```
 
 ### 3. Updating views
 
