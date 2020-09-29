@@ -26,6 +26,27 @@ const apos = require('apostrophe')({
 });
 ```
 
+#### Setting the `baseUrl`
+
+It is important to [set the `baseUrl` option](https://docs.apostrophecms.org/reference/core-server.html#baseurl) on your ApostropheCMS application for various reasons. In the SEO module it contributes to building the correct `canonical` link tag URL. This can be set on the main app configuration in `app.js` (statically or with an environment variable) or [in the `data/local.js` file](https://docs.apostrophecms.org/core-concepts/global-settings/settings.html#changing-the-value-for-a-specific-server-only) as that file will contain environment/server-specific configurations.
+
+```javascript
+// in app.js
+require('apostrophe')({
+  shortName: 'my-project-name',
+  baseUrl: 'https://myproject.com' // OR process.env.BASE_URL
+  modules: { ... },
+}
+```
+
+```javascript
+// in data/local.js
+module.exports = {
+  baseUrl: 'https://example.com'
+  // or set to `http://localhost:3000` during development on your local machine.
+};
+```
+
 ### 2. Module configuration
 If you choose to disable fields for a piece or page you can do so by setting `seo: false` on the module. `apostrophe-files`, `apostrophe-global`, `apostrophe-groups`, `apostrophe-images`, `apostrophe-users` have `seo: false` configured by default.
 
