@@ -1,3 +1,6 @@
+# 1.3.2 - 2020-10-26
+- Republishing to address npm issue. No changes.
+
 # 1.3.1 - 2020-10-07
 - Adds a note about setting the `baseUrl` option in the README.
 
