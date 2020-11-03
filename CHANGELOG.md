@@ -1,3 +1,6 @@
+# 1.3.3 - 2020-11-04
+- Updates `eslint` to `^7.1.0`
+
 # 1.3.2 - 2020-10-26
 - Republishing to address npm issue. No changes.
 
