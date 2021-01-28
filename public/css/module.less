@@ -3,7 +3,40 @@
   .apos-modal-body {
     .data-seo-page-scan-modal {
       &-body {
-        padding: 1rem;
+        padding: 2rem;
+
+        h3 {
+          font-size: 1.4rem;
+        }
+
+        h4 {
+          font-size: 1.3rem;
+          margin: 1rem 0;
+        }
+      }
+
+      &__result {
+        position: relative;
+        padding-left: 1rem;
+        margin: .3rem 0;
+
+        &:before {
+          content: '';
+          display: block;
+          position: absolute;
+          width: 10px;
+          height: 10px;
+          left: 0;
+          top: 5px;
+          border-radius: 100%;
+          background-color: @apos-green;
+        }
+
+        &.error {
+          &:before {
+            background-color: @apos-red;
+          }
+        }
       }
     }
   }

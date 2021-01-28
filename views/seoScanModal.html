@@ -14,15 +14,62 @@
 {%- endblock -%}
 
 {%- block body -%}
+{% set scan = data.scanResult %}
+
+{{ apos.log(scan) }}
   <div class="data-seo-page-scan-modal">
-  <div class="data-seo-page-scan-modal-body">
-  <h3>{{ data.url }}</h3>
-    <ul>
-      {% for result in data.scanResult %}
-        <li>{{ result }}</li>
-      {% endfor %}
-    </ul>
-  </div>
+    <div class="data-seo-page-scan-modal-body">
+      <h3>Scanned Page: {{ data.url }}</h3>
+
+      <div class="data-seo-page-scan-modal__meta">
+        <h4>Meta</h4>
+        <ul>
+          <li class="data-seo-page-scan-modal__result {% if scan.meta.title.error %}error{% endif %}">
+            {{ scan.meta.title.msg }}
+          </li>
+          <li class="data-seo-page-scan-modal__result {% if scan.meta.description.error %}error{% endif %}">
+            {{ scan.meta.description.msg }}
+          </li>
+        </ul>
+      </div>
+      <div class="data-seo-page-scan-modal__h1">
+        <h4>H1</h4>
+        <ul>
+          <li class="data-seo-page-scan-modal__result {% if scan.meta.h1.number.error %}error{% endif %}">
+            {{ scan.h1.number.msg }}
+          </li>
+          <li class="data-seo-page-scan-modal__result {% if scan.meta.h1.length.error %}error{% endif %}">
+            {{ scan.h1.length.msg }}
+            {% if scan.h1.length.error %}
+            <ul>
+              {% for h1 in scan.h1.length.list %}
+              <li>{{ h1 }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+          </li>
+        </ul>
+      </div>
+      <div clas="data-seo-page-scan-modal__content-length">
+        <h4>Content Length</h4>
+        <p class="data-seo-page-scan-modal__result {% if scan.contentLength.error %}error{% endif %}">
+          {{ scan.contentLength.msg }}
+        </p>
+      </div>
+      <div class="data-seo-page-scan-modal__dead-links">
+        <h4>Dead Links</h4>
+        <p class="data-seo-page-scan-modal__result {% if scan.deadLinks.error %}error{% endif %}">
+          {{ scan.deadLinks.msg }}
+        </p>
+        {% if scan.deadLinks.error %}
+          <ul>
+            {% for link in scan.deadLinks.list %}
+              <li><a href="{{ link }}" target="__blank">{{ link }}</a></li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+    </div>
   </div>
 {%- endblock -%}
 
