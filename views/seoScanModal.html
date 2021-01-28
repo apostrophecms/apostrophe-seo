@@ -1,0 +1,29 @@
+{%- extends "apostrophe-modal:baseSlideable.html" -%}
+{%- import 'apostrophe-ui:components/buttons.html' as buttons -%}
+
+{%- block modalClass -%}
+  apos-widget-tree apos-ui-modal-no-sidebar apos-modal-slideable
+{%- endblock -%}
+
+{%- block controls -%}
+  {{ buttons.major('Done', { action: 'cancel' }, 'apos-button--major') }}
+{%- endblock -%}
+
+{%- block label -%}
+  {{ __('SEO Page Scan') }}
+{%- endblock -%}
+
+{%- block body -%}
+  <div class="data-seo-page-scan-modal">
+  <div class="data-seo-page-scan-modal-body">
+  <h3>{{ data.url }}</h3>
+    <ul>
+      {% for result in data.scanResult %}
+        <li>{{ result }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  </div>
+{%- endblock -%}
+
+{%- block instructions -%}{%- endblock -%}
