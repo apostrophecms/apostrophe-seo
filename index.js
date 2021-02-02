@@ -11,7 +11,8 @@ module.exports = {
       'apostrophe-seo-global',
       'apostrophe-seo-groups',
       'apostrophe-seo-users',
-      'apostrophe-seo-pages'
+      'apostrophe-seo-pages',
+      'apostrophe-seo-pieces-pages'
     ]
   },
   construct: function (self, options) {
