@@ -7,9 +7,7 @@ apos.define('apostrophe-seo', {
       return apos.create('page-scan-modal', {
         action: self.action,
         body: {
-          href: window.location.href,
-          origin: window.location.origin,
-          slug: window.location.pathname
+          href: window.location.href
         }
       });
     };
