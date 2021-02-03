@@ -40,14 +40,16 @@
         </ul>
       </div>
       <div clas="data-seo-page-scan-modal__content-length">
-        <h4>Content Length</h4>
-        <p class="data-seo-page-scan-modal__result {% if scan.contentLength.error %}error{% endif %}">
-          {{ scan.contentLength.msg }}
+        <h4>Content Size</h4>
+        <p class="data-seo-page-scan-modal__result {% if scan.contentSize.error %}error{% endif %}">
+          {{ scan.contentSize.msg }}
         </p>
       </div>
       <div class="data-seo-page-scan-modal__dead-links">
         <h4>Dead Links</h4>
-        <p class="data-seo-page-scan-modal__result {% if scan.deadLinks.error %}error{% endif %}">
+      {{ buttons.major(__ns('apostrophe', 'Scan'), { action: 'scan-dead-links' }) }}
+
+        {# <p class="data-seo-page-scan-modal__result {% if scan.deadLinks.error %}error{% endif %}">
           {{ scan.deadLinks.msg }}
         </p>
         {% if scan.deadLinks.error %}
@@ -56,7 +58,7 @@
               <li><a href="{{ link }}" target="__blank">{{ link }}</a></li>
             {% endfor %}
           </ul>
-        {% endif %}
+        {% endif %} #}
       </div>
     </div>
   </div>

@@ -1,9 +1,8 @@
 apos.define('apostrophe-seo', {
   extend: 'apostrophe-context',
 
-  construct: function(self, options) {
-    self.scan = function(options) {
-
+  construct: (self, options) => {
+    self.scan = () => {
       return apos.create('page-scan-modal', {
         action: self.action,
         body: {

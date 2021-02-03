@@ -15,7 +15,7 @@ module.exports = {
       'apostrophe-seo-pieces-pages'
     ]
   },
-  construct: function (self, options) {
+  construct: (self, options) => {
     require('./lib/api.js')(self, options);
     require('./lib/routes.js')(self, options);
     require('./lib/assets.js')(self);
