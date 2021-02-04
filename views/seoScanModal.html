@@ -20,7 +20,7 @@
     <div class="data-seo-page-scan-modal-body">
       <h3>Scanned Page: {{ data.url }}</h3>
 
-      <div class="data-seo-page-scan-modal__meta">
+      <div>
         <h4>Meta</h4>
         <ul>
           <li class="data-seo-page-scan-modal__result {% if scan.meta.title.error %}error{% endif %}">
@@ -31,7 +31,7 @@
           </li>
         </ul>
       </div>
-      <div class="data-seo-page-scan-modal__h1">
+      <div>
         <h4>H1</h4>
         <ul>
           <li class="data-seo-page-scan-modal__result {% if scan.h1.error %}error{% endif %}">
@@ -39,16 +39,25 @@
           </li>
         </ul>
       </div>
-      <div clas="data-seo-page-scan-modal__content-length">
+      <div>
         <h4>Content Size</h4>
         <p class="data-seo-page-scan-modal__result {% if scan.contentSize.error %}error{% endif %}">
           {{ scan.contentSize.msg }}
         </p>
       </div>
-      <div class="data-seo-page-scan-modal__dead-links">
+      <div class="dead-links">
         <h4>Dead Links</h4>
-      {{ buttons.major(__ns('apostrophe', 'Scan'), { action: 'scan-dead-links' }) }}
-
+        {{ buttons.major(__ns('apostrophe', 'Scan'), { action: 'scan-dead-links' }) }}
+        <div class="dead-links-content">
+          <div class="dead-links-results dead-links-results__internal">
+            <h5>Internal Links</h5>
+            <ul></ul>
+          </div>
+          <div class="dead-links-results dead-links-results__external">
+            <h5>External Links</h5>
+            <ul></ul>
+          </div>
+        </div>
         {# <p class="data-seo-page-scan-modal__result {% if scan.deadLinks.error %}error{% endif %}">
           {{ scan.deadLinks.msg }}
         </p>
