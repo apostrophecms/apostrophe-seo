@@ -48,17 +48,6 @@
       <div class="data-seo-page-scan-modal__dead-links">
         <h4>Dead Links</h4>
       {{ buttons.major(__ns('apostrophe', 'Scan'), { action: 'scan-dead-links' }) }}
-
-        {# <p class="data-seo-page-scan-modal__result {% if scan.deadLinks.error %}error{% endif %}">
-          {{ scan.deadLinks.msg }}
-        </p>
-        {% if scan.deadLinks.error %}
-          <ul>
-            {% for link in scan.deadLinks.list %}
-              <li><a href="{{ link }}" target="__blank">{{ link }}</a></li>
-            {% endfor %}
-          </ul>
-        {% endif %} #}
       </div>
     </div>
   </div>
