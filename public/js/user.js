@@ -1,13 +1,7 @@
-
-import pageScanModal from './page-scan-modal';
-
-pageScanModal();
-
 apos.define('apostrophe-seo', {
   extend: 'apostrophe-context',
-
-  construct: (self, options) => {
-    self.scan = () => {
+  construct: function (self, options) {
+    self.scan = function () {
       return apos.create('page-scan-modal', {
         action: self.action,
         body: {
