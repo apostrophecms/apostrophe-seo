@@ -1,3 +1,8 @@
+
+import pageScanModal from './page-scan-modal';
+
+pageScanModal();
+
 apos.define('apostrophe-seo', {
   extend: 'apostrophe-context',
 
