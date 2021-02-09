@@ -3,52 +3,112 @@
 
 .apos-ui {
   .apos-modal-body {
-    .data-seo-page-scan-modal {
+    .scan-modal {
+        max-width: 600px;
+        margin: 0 auto;
+
+      &-url {
+        font-weight: 600;
+        margin: 20px 0;
+
+        &__workflow-mode {
+          display: inline-flex;
+          justify-content: center;
+          padding: 5px 8px;
+          background-color: #ff793f;
+          color: @apos-white;
+          border-radius: 5px;
+          text-align: center;
+          margin-right: 10px;
+          text-transform: uppercase;
+          font-size: 12px;
+          font-weight: 600;
+          letter-spacing: 3px;
+        }
+      }
+
       &-body {
         padding: 30px;
 
-        h3 {
-          font-size: 16px;
-          font-weight: 500;
-        }
+        // h3 {
+        //   font-size: 16px;
+        //   font-weight: 500;
+        // }
 
         h4 {
-          font-size: 18px;
+          font-size: 13px;
           font-weight: 500;
-          margin: 15px 0;
+          margin: 18px 0 10px;
+          color: #838383;
         }
       }
 
       &__result {
         position: relative;
         padding-left: 20px;
-        margin: 7px 0;
+        margin: 7px 0 15px;
+
+        code {
+          display: block;
+          max-width: 600px;
+          margin: 5px 0 10px;
+          padding: 5px;
+          background-color: @apos-light;
+          border-radius: 3px;
+          border: solid 1px @apos-mid;
+          color: @apos-red;
+        }
 
         &:before {
-          content: '';
+          .fa;
+          content: '\f00c';
           display: block;
           position: absolute;
-          width: 10px;
-          height: 10px;
+          width: 15px;
+          height: 15px;
+          font-size: 9px;
+          line-height: 16px;
+          color: @apos-white;
+          text-align: center;
           left: 0;
-          top: 5px;
+          top: 2.5px;
           border-radius: 100%;
           background-color: @apos-green;
         }
 
         &.error {
           &:before {
+            content: '\f12a';
             background-color: @apos-red;
           }
         }
       }
 
-      .dead-links {
+      &__warning {
+        position: relative;
+        font-style: italic;
+        padding-left: 20px;
+
+        &:before {
+          content: '\f071';
+          .fa;
+          position: absolute;
+          // width: 15px;
+          // height: 15px;
+          top: 3px;
+          left: 0;
+          color: @apos-gold;
+        }
+      }
+
+      &-dead-links {
+        .apos-button {
+          margin-bottom: 10px;
+          position: relative;
+        }
+
         &.loading {
           .apos-button {
-            position: relative;
-            margin-bottom: 10px;
-
             &:after {
               content: '\f110';
               position: absolute;
@@ -68,16 +128,31 @@
           }
         }
 
-        &-content {
+        &__results {
+          margin: 15px 0;
 
+          ul {
+            > li {
+              position: relative;
+              padding-left: 20px;
+              margin-left: 15px;
 
-        }
+              a {
+                color: @apos-blue;
+              }
 
-        &-results {
-          h5 {
-            font-size: 16px;
-            font-weight: 500;
-            margin: 10px 0;
+              &:before {
+                content: '';
+                position: absolute;
+                width: 5px;
+                height: 5px;
+                left: 5px;
+                top: 8px;
+                background-color: @apos-blue;
+                border-radius: 50%;
+
+              }
+            }
           }
         }
       }
