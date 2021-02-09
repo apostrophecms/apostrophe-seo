@@ -4,13 +4,19 @@ apos.define('page-scan-modal', {
   construct: function (self, options) {
     var superBeforeShow = self.beforeShow;
     self.beforeShow = function (callback) {
-      self.$deadLinks = self.$el.find('.dead-links');
+      self.$deadLinks = self.$el.find('.scan-modal-dead-links');
+      self.canceled = false;
 
       self.$el.on('click', '[data-apos-scan-dead-links]', function() {
         self.scanDeadLinks();
       });
 
       superBeforeShow(callback);
+    };
+
+    // Checked in each loop, to avoid continuing the scan if the modal is closed
+    self.afterHide = function (e) {
+      self.canceled = true;
     };
 
     self.scanDeadLinks = function () {
@@ -24,8 +30,8 @@ apos.define('page-scan-modal', {
     };
 
     self.startScanning = function () {
-      self.$deadLinks.find('.dead-links-results p').remove();
-      self.$deadLinks.find('.dead-links-results ul').empty();
+      self.$deadLinks.find('.scan-modal-dead-links__results p, .scan-modal__warning').remove();
+      self.$deadLinks.find('.scan-modal-dead-links__results ul').empty();
 
       self.$deadLinks.addClass('loading');
     };
@@ -37,6 +43,9 @@ apos.define('page-scan-modal', {
       var external = [];
 
       $links.each(function (i, el) {
+        if (self.canceled) {
+          return;
+        };
         var link = $(el).attr('href');
 
         if (link) {
@@ -66,9 +75,11 @@ apos.define('page-scan-modal', {
       var iterations = 1;
 
       links.internal.forEach(function (link) {
+        if (self.canceled) {
+          return;
+        };
         $.ajax(link, {
           method: 'HEAD',
-          // async: false,
           complete: function (res) {
             if (res.status === 404) {
               deadLinks.push(link);
@@ -97,6 +108,9 @@ apos.define('page-scan-modal', {
 
       // Recursive function to request a certain amount of links at a time
       function request (links) {
+        if (self.canceled) {
+          return;
+        };
         var linksToRequest = links.splice(0, numberByRequest);
 
         if (!linksToRequest.length) {
@@ -126,31 +140,32 @@ apos.define('page-scan-modal', {
     };
 
     self.injectDeadLinks = function (links, type, corsErr) {
-      var $container = self.$el.find('.dead-links-results__internal');
+      var $container = self.$el.find('.scan-modal-dead-links__results.internal');
 
       if (type === 'external') {
-        $container = self.$el.find('.dead-links-results__external');
+        $container = self.$el.find('.scan-modal-dead-links__results.external');
       }
 
       var $list = $container.find('ul');
 
       if (links.length) {
         $container.prepend(
-          '<p class="data-seo-page-scan-modal__result error"> There are some ' + type + ' dead links:</p>'
+          '<p class="scan-modal__result error"> There are some ' + type + ' dead links:</p>'
         );
 
         links.forEach(function (link) {
-          $list.append('<li><a href="' + link + '">' + link + '</a></li>');
+          $list.append('<li><a href="' + link + '" target="_blank">' + link + '</a></li>');
         });
       } else {
         $container.prepend(
-          '<p class="data-seo-page-scan-modal__result"> There are no ' + type + ' dead links</p>'
+          '<p class="scan-modal__result"> There are no ' + type + ' dead links</p>'
         );
-        if (corsErr) {
-          $container.prepend(
-            '<p class="data-seo-page-scan-modal__result error">Warning: you could have some CORS issues</p>'
-          );
-        }
+      }
+
+      if (corsErr && type === 'internal') {
+        $container.parent().prepend(
+          '<p class="scan-modal__warning">It looks like you have CORS issues, make sure to be on the right domain</p>'
+        );
       }
     };
   }
