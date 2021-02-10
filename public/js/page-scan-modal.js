@@ -150,7 +150,7 @@ apos.define('page-scan-modal', {
 
       if (links.length) {
         $container.prepend(
-          '<p class="scan-modal__result error"> There are some ' + type + ' dead links:</p>'
+          '<p class="scan-modal__result error">There are some ' + type + ' dead links:</p>'
         );
 
         links.forEach(function (link) {
@@ -158,7 +158,7 @@ apos.define('page-scan-modal', {
         });
       } else {
         $container.prepend(
-          '<p class="scan-modal__result"> There are no ' + type + ' dead links</p>'
+          '<p class="scan-modal__result">There are no ' + type + ' dead links.</p>'
         );
       }
 

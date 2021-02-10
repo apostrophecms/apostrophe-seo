@@ -22,9 +22,9 @@
         {% if data.workflow %}
           <span class="scan-modal-url__workflow-mode">
           {% if data.isDraft %}
-            {{ __(' Draft') }}
+            {{ __('Draft') }}
           {% else %}
-            {{ __(' Live') }}
+            {{ __('Live') }}
           {% endif %}
           </span>
         {% endif %}
@@ -37,7 +37,7 @@
           <code>{{ scan.meta.title.elemHtml }}</code>
         {% endif %}
       </p>
-      <h4>Meta Description</h4>
+      <h4>{{ __('Meta Description') }}</h4>
       <p class="scan-modal__result {% if scan.meta.description.error %}error{% endif %}">
         {{ scan.meta.description.msg }}
         {% if scan.meta.description.elemHtml %}
@@ -48,12 +48,12 @@
         <p class="scan-modal__result {% if scan.h1.error %}error{% endif %}">
           {{ scan.h1.msg }}
         </p>
-      <h4>Content Size</h4>
+      <h4>{{ __('Content Size') }}</h4>
       <p class="scan-modal__result {% if scan.contentSize.error %}error{% endif %}">
         {{ scan.contentSize.msg }}
       </p>
       <div class="scan-modal-dead-links">
-        <h4>Dead Links</h4>
+        <h4>{{ __('Dead Links (lead to 404)') }}</h4>
         {{ buttons.major(__ns('apostrophe', 'Scan'), { action: 'scan-dead-links' }) }}
         <div class="scan-modal-dead-links__content">
           <div class="scan-modal-dead-links__results internal">
