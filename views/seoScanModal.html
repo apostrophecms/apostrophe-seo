@@ -30,7 +30,7 @@
         {% endif %}
         {{ data.url }}
       </p>
-      <h4>Meta Title</h4>
+      <h4>{{ __('Meta Title') }}</h4>
       <p class="scan-modal__result {% if scan.meta.title.error %}error{% endif %}">
         {{ scan.meta.title.msg }}
         {% if scan.meta.title.elemHtml %}
@@ -44,7 +44,21 @@
           <code>{{ scan.meta.description.elemHtml }}</code>
         {% endif %}
       </p>
-      <h4>H1</h4>
+      <h4>{{ __('Open Graph Meta Title') }}</h4>
+      <p class="scan-modal__result {% if scan.ogMeta.title.error %}error{% endif %}">
+        {{ scan.ogMeta.title.msg }}
+        {% if scan.ogMeta.title.elemHtml %}
+          <code>{{ scan.ogMeta.title.elemHtml }}</code>
+        {% endif %}
+      </p>
+      <h4>{{ __('Open Graph Meta Description') }}</h4>
+      <p class="scan-modal__result {% if scan.ogMeta.description.error %}error{% endif %}">
+        {{ scan.ogMeta.description.msg }}
+        {% if scan.ogMeta.description.elemHtml %}
+          <code>{{ scan.ogMeta.description.elemHtml }}</code>
+        {% endif %}
+      </p>
+      <h4>{{ __('H1') }}</h4>
         <p class="scan-modal__result {% if scan.h1.error %}error{% endif %}">
           {{ scan.h1.msg }}
         </p>
@@ -52,14 +66,23 @@
       <p class="scan-modal__result {% if scan.contentSize.error %}error{% endif %}">
         {{ scan.contentSize.msg }}
       </p>
-      <div class="scan-modal-dead-links">
-        <h4>{{ __('Dead Links (lead to 404)') }}</h4>
-        {{ buttons.major(__ns('apostrophe', 'Scan'), { action: 'scan-dead-links' }) }}
-        <div class="scan-modal-dead-links__content">
-          <div class="scan-modal-dead-links__results internal">
-            <ul></ul>
+      <div>
+        <div class="scan-modal-dead-links">
+          <h4>{{ __('Dead Links (lead to 404)') }}</h4>
+          {{ buttons.major(__ns('apostrophe', 'Scan'), { action: 'scan-dead-links' }) }}
+          <div class="scan-modal-dead-links__content">
+            <div class="scan-modal-dead-links__results internal">
+              <ul></ul>
+            </div>
+            <div class="scan-modal-dead-links__results external">
+              <ul></ul>
+            </div>
           </div>
-          <div class="scan-modal-dead-links__results external">
+        </div>
+        <div class="scan-modal-images">
+          <h4>{{ __('Images Alt') }}</h4>
+          {{ buttons.major(__ns('apostrophe', 'Scan'), { action: 'scan-images' }) }}
+          <div class="scan-modal-images__content">
             <ul></ul>
           </div>
         </div>

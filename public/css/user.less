@@ -4,7 +4,7 @@
 .apos-ui {
   .apos-modal-body {
     .scan-modal {
-        max-width: 600px;
+        max-width: 700px;
         margin: 0 auto;
 
       &-url {
@@ -79,21 +79,6 @@
         }
       }
 
-      &__warning {
-        position: relative;
-        font-style: italic;
-        padding-left: 20px;
-
-        &:before {
-          content: '\f071';
-          .fa;
-          position: absolute;
-          top: 3px;
-          left: 0;
-          color: @apos-gold;
-        }
-      }
-
       &-dead-links {
         .apos-button {
           margin-bottom: 10px;
@@ -146,6 +131,29 @@
 
               }
             }
+          }
+        }
+      }
+
+      &-images {
+        ul {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-around;
+
+          li {
+            flex-shrink: 1;
+            width: 200px;
+            height: 180px;
+            margin: 20px;
+            background-position: center;
+            background-size: cover;
+
+
+            // img {
+            //   object-fit: cover;
+            //   max-width: 100%;
+            // }
           }
         }
       }
