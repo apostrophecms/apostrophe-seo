@@ -173,12 +173,13 @@ apos.define('page-scan-modal', {
     self.scanImagesAlt = function () {
       var $images = self.$body.find('img').not('.apos-ui a');
       var $scanImages = self.$el.find('.scan-modal-images');
-      var $container = $scanImages.find('.scan-modal-images__content');
-      var $list = $container.find('ul');
+      var $emptyAltsContainer = $scanImages.find('.scan-modal-images__results.empty-alts');
+      var $noAltsContainer = $scanImages.find('.scan-modal-images__results.no-alts');
       var emptyAlts = [];
+      var noAlts = [];
 
-      $container.find('.scan-modal__result').remove();
-      $list.empty();
+      $scanImages.find('.scan-modal-images__results > ul').empty();
+      $scanImages.find('.scan-modal-images__results > p').remove();
 
       $scanImages.addClass('loading');
 
@@ -188,16 +189,29 @@ apos.define('page-scan-modal', {
         var src = $el.attr('src');
 
         if (!alt && src) {
-          emptyAlts.push(src);
+          if (typeof alt === 'string') {
+            emptyAlts.push(src);
+          } else {
+            noAlts.push(src);
+          }
         }
       });
 
       if (!emptyAlts.length) {
-        $container.prepend('<p class="scan-modal__result">There are no empty alt attributes in your images.</p>');
+        $emptyAltsContainer.prepend('<p class="scan-modal__result">There are no empty alt attributes in your images.</p>');
       } else {
-        $container.prepend('<p class="scan-modal__result error">There are empty alt attributes in some of your images:</p>');
+        $emptyAltsContainer.prepend('<p class="scan-modal__result warning">There are empty alt attributes in some of your images:</p>');
         emptyAlts.forEach((src) => {
-          $list.append('<li style="background-image: url(' + src + ')"></li>');
+          $emptyAltsContainer.find('ul').append('<li style="background-image: url(' + src + ')"></li>');
+        });
+      }
+
+      if (!noAlts.length) {
+        $noAltsContainer.prepend('<p class="scan-modal__result">All images have alt attributes.</p>');
+      } else {
+        $noAltsContainer.prepend('<p class="scan-modal__result error">There are some images without alt attributes:</p>');
+        noAlts.forEach((src) => {
+          $noAltsContainer.find('ul').append('<li style="background-image: url(' + src + ')"></li>');
         });
       }
 

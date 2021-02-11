@@ -83,7 +83,12 @@
           <h4>{{ __('Images Alt') }}</h4>
           {{ buttons.major(__ns('apostrophe', 'Scan'), { action: 'scan-images' }) }}
           <div class="scan-modal-images__content">
-            <ul></ul>
+            <div class="scan-modal-images__results no-alts">
+              <ul></ul>
+            </div>
+            <div class="scan-modal-images__results empty-alts">
+              <ul></ul>
+            </div>
           </div>
         </div>
       </div>

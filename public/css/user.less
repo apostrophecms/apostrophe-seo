@@ -93,11 +93,16 @@
           background-color: @apos-green;
         }
 
-        &.error {
-          &:before {
+        &.error:before {
             content: '\f12a';
             background-color: @apos-red;
-          }
+        }
+
+        &.warning:before {
+          content: '\f071';
+          color: @apos-gold;
+          font-size: 15px;
+          background-color: transparent;
         }
       }
 
@@ -124,7 +129,6 @@
                 top: 8px;
                 background-color: @apos-blue;
                 border-radius: 50%;
-
               }
             }
           }
@@ -138,7 +142,6 @@
           justify-content: space-around;
 
           li {
-            flex-shrink: 1;
             width: 200px;
             height: 180px;
             margin: 20px;
