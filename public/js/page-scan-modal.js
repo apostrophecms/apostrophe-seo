@@ -172,36 +172,36 @@ apos.define('page-scan-modal', {
 
     self.scanImagesAlt = function () {
       var $images = self.$body.find('img').not('.apos-ui a');
-      var $container = self.$el.find('.scan-modal-images__content');
+      var $scanImages = self.$el.find('.scan-modal-images');
+      var $container = $scanImages.find('.scan-modal-images__content');
       var $list = $container.find('ul');
       var emptyAlts = [];
+
+      $container.find('.scan-modal__result').remove();
+      $list.empty();
+
+      $scanImages.addClass('loading');
 
       $images.each(function (i, elem) {
         var $el = $(elem);
         var alt = $el.attr('alt');
+        var src = $el.attr('src');
 
-        if (!alt) {
-          console.log('$el.att) ===> ', $el.attr('src'));
-          emptyAlts.push($el.attr('src'));
-
-          // emptyAlts.push($el[0].outerHTML);
-          // .replace(/\s+/g, ' ')
+        if (!alt && src) {
+          emptyAlts.push(src);
         }
       });
 
       if (!emptyAlts.length) {
         $container.prepend('<p class="scan-modal__result">There are no empty alt attributes in your images.</p>');
       } else {
-        $container.prepend('<p class="scan-modal__result error">There are empty alt attributes in some of your images.</p>');
+        $container.prepend('<p class="scan-modal__result error">There are empty alt attributes in some of your images:</p>');
         emptyAlts.forEach((src) => {
-          var test = 'http://localhost:3000/uploads/attachments/ckkzrizjw001zdph943kide45-dl.full.gif';
-          var item = '<li style="background-image: url("' + test + '")"></li>"';
-          console.log('item ===> ', item);
-          $list.appendChild(item);
-
-          // $list.prepend('<li>' + src + '</li>');
+          $list.append('<li style="background-image: url(' + src + ')"></li>');
         });
       }
+
+      $scanImages.removeClass('loading');
     };
   }
 });

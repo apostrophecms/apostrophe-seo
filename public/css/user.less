@@ -36,6 +36,28 @@
           margin: 18px 0 10px;
           color: #838383;
         }
+
+        .loading .apos-button {
+          position: relative;
+          margin-bottom: 10px;
+
+          &:after {
+            content: '\f110';
+            position: absolute;
+            z-index: 10;
+            width: 25px;
+            height: 25px;
+            right: -50px;
+            left: auto;
+            color: @apos-green;
+            .fa;
+            font-size: 25px;
+            line-height: 100%;
+            opacity: 1;
+            .apos-rotate();
+            .apos-transition();
+          }
+        }
       }
 
       &__result {
@@ -80,32 +102,6 @@
       }
 
       &-dead-links {
-        .apos-button {
-          margin-bottom: 10px;
-          position: relative;
-        }
-
-        &.loading {
-          .apos-button {
-            &:after {
-              content: '\f110';
-              position: absolute;
-              z-index: 10;
-              width: 25px;
-              height: 25px;
-              right: -50px;
-              left: auto;
-              color: @apos-green;
-              .fa;
-              font-size: 25px;
-              line-height: 100%;
-              opacity: 1;
-              .apos-rotate();
-              .apos-transition();
-            }
-          }
-        }
-
         &__results {
           margin: 15px 0;
 
@@ -148,12 +144,6 @@
             margin: 20px;
             background-position: center;
             background-size: cover;
-
-
-            // img {
-            //   object-fit: cover;
-            //   max-width: 100%;
-            // }
           }
         }
       }
