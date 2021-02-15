@@ -1,0 +1,56 @@
+{%- extends "apostrophe-modal:baseSlideable.html" -%}
+{%- import 'apostrophe-ui:components/buttons.html' as buttons -%}
+
+{%- block modalClass -%}
+  apos-widget-tree apos-ui-modal-no-sidebar apos-modal-slideable
+{%- endblock -%}
+
+{%- block controls -%}
+  {{ buttons.major('Done', { action: 'cancel' }, 'apos-button--major') }}
+{%- endblock -%}
+
+{%- block label -%}
+  {{ __('SEO Page Scan') }}
+{%- endblock -%}
+
+{%- block body -%}
+{% set scan = data.scanResult %}
+
+  <div class="data-seo-page-scan-modal">
+    <div class="data-seo-page-scan-modal-body">
+      <h3>Scanned Page: {{ data.url }}</h3>
+
+      <div class="data-seo-page-scan-modal__meta">
+        <h4>Meta</h4>
+        <ul>
+          <li class="data-seo-page-scan-modal__result {% if scan.meta.title.error %}error{% endif %}">
+            {{ scan.meta.title.msg }}
+          </li>
+          <li class="data-seo-page-scan-modal__result {% if scan.meta.description.error %}error{% endif %}">
+            {{ scan.meta.description.msg }}
+          </li>
+        </ul>
+      </div>
+      <div class="data-seo-page-scan-modal__h1">
+        <h4>H1</h4>
+        <ul>
+          <li class="data-seo-page-scan-modal__result {% if scan.h1.error %}error{% endif %}">
+            {{ scan.h1.msg }}
+          </li>
+        </ul>
+      </div>
+      <div clas="data-seo-page-scan-modal__content-length">
+        <h4>Content Size</h4>
+        <p class="data-seo-page-scan-modal__result {% if scan.contentSize.error %}error{% endif %}">
+          {{ scan.contentSize.msg }}
+        </p>
+      </div>
+      <div class="data-seo-page-scan-modal__dead-links">
+        <h4>Dead Links</h4>
+      {{ buttons.major(__ns('apostrophe', 'Scan'), { action: 'scan-dead-links' }) }}
+      </div>
+    </div>
+  </div>
+{%- endblock -%}
+
+{%- block instructions -%}{%- endblock -%}
