@@ -34,7 +34,7 @@ apos.define('page-scan-modal', {
     };
 
     self.startScanning = function () {
-      self.$deadLinks.find('.scan-modal-dead-links__results p, .scan-modal__warning').remove();
+      self.$deadLinks.find('.scan-modal-dead-links__results > .scan-modal__result').remove();
       self.$deadLinks.find('.scan-modal-dead-links__results ul').empty();
 
       self.$deadLinks.addClass('loading');
@@ -147,17 +147,19 @@ apos.define('page-scan-modal', {
     };
 
     self.injectDeadLinks = function (links, type) {
-      var $container = self.$el.find('.scan-modal-dead-links__results.internal');
+      var $deadLinks = self.$el.find('.scan-modal-dead-links');
+      var $container = $deadLinks.find('.scan-modal-dead-links__results.internal');
 
       if (type === 'external') {
-        $container = self.$el.find('.scan-modal-dead-links__results.external');
+        $container = $deadLinks.find('.scan-modal-dead-links__results.external');
       }
 
       var $list = $container.find('ul');
 
       if (links.length) {
         $container.prepend(
-          '<p class="scan-modal__result error">There are some ' + type + ' dead links:</p>'
+          '<div class="scan-modal__result error"><span>Fail</span><p>One or more <strong>' + type +
+          '</strong> urls on this page are linking to missing pages.</p></div>'
         );
 
         links.forEach(function (link) {
@@ -165,9 +167,12 @@ apos.define('page-scan-modal', {
         });
       } else {
         $container.prepend(
-          '<p class="scan-modal__result">There are no ' + type + ' dead links.</p>'
+          '<div class="scan-modal__result"><span>Pass</span><p>No <strong>' + type + '</strong> urls are linking to missing pages.</p></div>'
         );
       }
+
+      $container.addClass('filled');
+      $deadLinks.find('> button').text('Rescan');
     };
 
     self.scanImagesAlt = function () {
@@ -179,7 +184,7 @@ apos.define('page-scan-modal', {
       var noAlts = [];
 
       $scanImages.find('.scan-modal-images__results > ul').empty();
-      $scanImages.find('.scan-modal-images__results > p').remove();
+      $scanImages.find('.scan-modal-images__results > .scan-modal__result').remove();
 
       $scanImages.addClass('loading');
 
@@ -198,23 +203,41 @@ apos.define('page-scan-modal', {
       });
 
       if (!emptyAlts.length) {
-        $emptyAltsContainer.prepend('<p class="scan-modal__result">There are no empty alt attributes in your images.</p>');
+        $emptyAltsContainer.prepend(
+          '<div class="scan-modal__result"><span>Pass</span><p>There are no empty alt attributes in your images.</p></div>'
+        );
       } else {
-        $emptyAltsContainer.prepend('<p class="scan-modal__result warning">There are empty alt attributes in some of your images:</p>');
+        $emptyAltsContainer.prepend(
+          '<div class="scan-modal__result warning"><span>Warning</span><p> ' +
+          'One or more images on this page have empty <span>alt</span> attributes. It is ok only if ' +
+          'the image is purely decorative or not central to understanding the content of the page.</p></div>'
+        );
         emptyAlts.forEach((src) => {
           $emptyAltsContainer.find('ul').append('<li style="background-image: url(' + src + ')"></li>');
         });
       }
 
       if (!noAlts.length) {
-        $noAltsContainer.prepend('<p class="scan-modal__result">All images have alt attributes.</p>');
+        $noAltsContainer.prepend(
+          '<div class="scan-modal__result"><span>Pass</span><p>All images on the page have at least ' +
+          'an empty value for the alt attribute (example: <span>alt=""</span>).</p></div>'
+        );
       } else {
-        $noAltsContainer.prepend('<p class="scan-modal__result error">There are some images without alt attributes:</p>');
+        $noAltsContainer.prepend(
+          '<div class="scan-modal__result error"><span>Fail</span> ' +
+          '<p>One or more images on this page are missing a <span>alt</span> attribute. ' +
+          'All images must have at least an empty value for the <span>alt</span> attribute (example: <span>alt=""</span>). ' +
+          'If the image is decorative, or not central to understanding the content of the page, an empty value is recommended. ' +
+          'When the image is the subject of the content, the <span>alt</span> attribute should contain relevant information ' +
+          'for unsighted users and users for visual difficulties.</p></div>'
+        );
         noAlts.forEach((src) => {
           $noAltsContainer.find('ul').append('<li style="background-image: url(' + src + ')"></li>');
         });
       }
 
+      $scanImages.find('.scan-modal-images__results').addClass('filled');
+      $scanImages.find('> button').text('Rescan');
       $scanImages.removeClass('loading');
     };
   }
