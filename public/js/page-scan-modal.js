@@ -212,7 +212,7 @@ apos.define('page-scan-modal', {
           'One or more images on this page have empty <span>alt</span> attributes. It is ok only if ' +
           'the image is purely decorative or not central to understanding the content of the page.</p></div>'
         );
-        emptyAlts.forEach((src) => {
+        emptyAlts.forEach(function (src) {
           $emptyAltsContainer.find('ul').append('<li style="background-image: url(' + src + ')"></li>');
         });
       }
@@ -231,7 +231,7 @@ apos.define('page-scan-modal', {
           'When the image is the subject of the content, the <span>alt</span> attribute should contain relevant information ' +
           'for unsighted users and users for visual difficulties.</p></div>'
         );
-        noAlts.forEach((src) => {
+        noAlts.forEach(function (src) {
           $noAltsContainer.find('ul').append('<li style="background-image: url(' + src + ')"></li>');
         });
       }
