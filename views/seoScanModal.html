@@ -36,10 +36,7 @@
         <span>{% if scan.meta.title.error %}Fail{% else %}Pass{% endif %}</span>
         <p>{{ scan.meta.title.msg | safe }}</p>
         {% if scan.meta.title.elemHtml %}
-        {{ apos.log('toto', scan.meta.title.elemHtml) }}
           <code>{{ scan.meta.title.elemHtml }}</code>
-          <p>{{ scan.meta.title.elemHtml }}</p>
-
         {% endif %}
       </div>
       <h4>{{ __('Description') }}</h4>
