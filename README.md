@@ -59,13 +59,13 @@ module.exports = {
 };
 ```
 
-### Adding global fields for analytics
+#### Adding global fields for analytics
 
 If you would like to configure additional fields to allow an editor to add a Google Analytics tracking ID and a Google site verification ID you can do so by setting `seoGoogleFields: true` in `apostrophe-global` in your project. Add `seoGoogleTagManager: true` to also add a field for the Google Tag Manager ID (`seoGoogleFields` must also be `true` in this case).
 
 Finally, you may only want to use Google Tag Manager for all analytics and site verification needs. Set `seoTagMangerOnly: true` in `apostrophe-global` to do this. Doing so will override the other options, making their presence irrelevant if also set.
 
-### Setting rules for SEO page scanner
+#### Setting rules for SEO page scanner
 You can access a SEO page scanner through the page menu, it allows you to process seo related verifications on the current page.
 If you are using `apostrophe-workflow`, notice that the button is accessible in `draft` and `live` modes.
 Also, keep in mind that, when accessing the modal, your current url must match the `baseUrl` flag set in the project. Otherwise the server will not return the modal.
