@@ -91,7 +91,7 @@ Some of the rules can be configured from your `apostrophe-seo` declaration.
         min: 40,
         max: 80
       },
-      minWordsNumber: 400
+      minWordsOnPage: 400
     }
   }
 ```
