@@ -3,42 +3,191 @@
 
 .apos-ui {
   .apos-modal-body {
-    .data-seo-page-scan-modal {
+    .scan-modal {
+      max-width: 700px;
+      margin: 0 auto;
+
+      .filled {
+        margin-bottom: 20px;
+      }
+
+      &-url {
+        font-weight: 600;
+        margin: 20px 0;
+
+        &__workflow-mode {
+          display: inline-flex;
+          justify-content: center;
+          padding: 5px 8px;
+          background-color: #ff793f;
+          color: @apos-white;
+          border-radius: 5px;
+          text-align: center;
+          margin-right: 10px;
+          text-transform: uppercase;
+          font-size: 12px;
+          font-weight: 600;
+          letter-spacing: 3px;
+        }
+      }
+
       &-body {
         padding: 30px;
 
         h3 {
-          font-size: 16px;
-          font-weight: 500;
+          font-weight: bold;
+          font-size: 24px;
+          margin: 18px 0 10px;
         }
 
         h4 {
-          font-size: 18px;
-          font-weight: 500;
-          margin: 15px 0;
+          font-size: 16px;
+          font-weight: bold;
+          margin: 18px 0 8px;
+          color: #5B5B5B;
+        }
+
+        .loading .apos-button {
+          position: relative;
+
+          &:after {
+            content: '\f110';
+            position: absolute;
+            z-index: 10;
+            width: 25px;
+            height: 25px;
+            right: -50px;
+            left: auto;
+            color: @apos-green;
+            .fa;
+            font-size: 25px;
+            line-height: 100%;
+            opacity: 1;
+            .apos-rotate();
+            .apos-transition();
+          }
         }
       }
 
       &__result {
         position: relative;
-        padding-left: 20px;
-        margin: 7px 0;
+        background-color: rgba(0, 191, 154, 0.1);
+        border-radius: 8px;
+        padding: 8px;
+        font-size: 14px;
 
-        &:before {
-          content: '';
+        strong {
+          font-weight: bold;
+        }
+
+        .code {
+          font-family: 'Andale Mono', 'Courier', monospace;
+          color: #D02216;
+        }
+
+        code {
           display: block;
-          position: absolute;
-          width: 10px;
-          height: 10px;
-          left: 0;
-          top: 5px;
-          border-radius: 100%;
-          background-color: @apos-green;
+          max-width: 600px;
+          margin-top: 8px;
+          padding: 5px;
+          background-color: @apos-light;
+          border-radius: 3px;
+          border: solid 1px @apos-mid;
+          .code();
+        }
+
+        > span {
+          font-weight: bold;
+          font-size: 12px;
+          margin-bottom: 8px;
+          padding-left: 15px;
+          position: relative;
+
+          &:before {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            left: 0;
+            top: 4px;
+            border-radius: 100%;
+            background-color: @apos-green;
+          }
+        }
+
+        > p span {
+          .code();
         }
 
         &.error {
-          &:before {
-            background-color: @apos-red;
+          background-color: rgba(234, 67, 58, 0.1);
+
+          > span {
+            &:before {
+              content: '';
+              background-color: @apos-red;
+          }
+          }
+        }
+
+        &.warning {
+          background-color: rgba(204, 167, 0, 0.1);
+
+          > span:before {
+            content: '';
+            background-color: @apos-gold;
+
+          }
+        }
+      }
+
+      &-dead-links {
+        &__results {
+          ul {
+            > li {
+              position: relative;
+              padding-left: 20px;
+              margin: 3px 0 0 15px;
+
+              a {
+                color: @apos-blue;
+              }
+
+              &:before {
+                content: '';
+                position: absolute;
+                width: 5px;
+                height: 5px;
+                left: 5px;
+                top: 8px;
+                background-color: @apos-blue;
+                border-radius: 50%;
+              }
+            }
+          }
+
+          &.filled {
+            ul {
+              margin-top: 10px;
+            }
+          }
+        }
+      }
+
+      &-images {
+        &__results {
+          ul {
+            display: flex;
+            flex-wrap: wrap;
+
+            li {
+              width: 200px;
+              height: 180px;
+              margin: 15px 6px 0;
+              background-position: center;
+              background-size: cover;
+            }
           }
         }
       }

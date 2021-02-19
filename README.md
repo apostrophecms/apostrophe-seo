@@ -28,7 +28,7 @@ const apos = require('apostrophe')({
 
 #### Setting the `baseUrl`
 
-It is important to [set the `baseUrl` option](https://docs.apostrophecms.org/reference/core-server.html#baseurl) on your ApostropheCMS application for various reasons. In the SEO module it contributes to building the correct `canonical` link tag URL. This can be set on the main app configuration in `app.js` (statically or with an environment variable) or [in the `data/local.js` file](https://docs.apostrophecms.org/core-concepts/global-settings/settings.html#changing-the-value-for-a-specific-server-only) as that file will contain environment/server-specific configurations.
+It is important to [set the `baseUrl` option](https://docs.apostrophecms.org/reference/core-server.html#baseurl) on your ApostropheCMS application for various reasons. In the SEO module it contributes to building the correct `canonical` link tag URL and allows to access the SEO page scan modal. This can be set on the main app configuration in `app.js` (statically or with an environment variable) or [in the `data/local.js` file](https://docs.apostrophecms.org/core-concepts/global-settings/settings.html#changing-the-value-for-a-specific-server-only) as that file will contain environment/server-specific configurations.
 
 ```javascript
 // in app.js
@@ -65,9 +65,43 @@ If you would like to configure additional fields to allow an editor to add a Goo
 
 Finally, you may only want to use Google Tag Manager for all analytics and site verification needs. Set `seoTagMangerOnly: true` in `apostrophe-global` to do this. Doing so will override the other options, making their presence irrelevant if also set.
 
+#### Setting rules for SEO page scanner
+You can access a SEO page scanner through the page menu, it allows you to process seo related verifications on the current page.
+If you are using `apostrophe-workflow`, notice that the button is accessible in `draft` and `live` modes.
+Also, keep in mind that, when accessing the modal, your current url must match the `baseUrl` flag set in the project. Otherwise the server will not return the modal.
+
+Some of the rules can be configured from your `apostrophe-seo` declaration.
+
+```js
+  'apostrophe-seo': {
+    scanRules: {
+      titleLength: {
+        min: 40,
+        max: 80
+      },
+      descriptionLength: {
+        min: 40,
+        max: 80
+      },
+      ogTitleLength: {
+        min: 40,
+        max: 80
+      },
+      ogDescriptionLength: {
+        min: 40,
+        max: 80
+      },
+      minWordsOnPage: 400
+    }
+  }
+```
+
+You can choose the desired length for meta title and description, as well as for open graph title and description. You also can choose the minimum of words you want in a page.
+If you don't, some default values are used.
+
 ### 3. Updating views
 
-Add the following `include`  to your `<head></head>` in `layout.html` that all of your pages extend, or to `outerLayout.html` if you have one in `apostrophe-templates/views/`. This will output the meta tags needed for SEO and Google Analytics/Verification configuration.
+Add the following `include` to your `<head></head>` in `layout.html` that all of your pages extend, or to `outerLayout.html` if you have one in `apostrophe-templates/views/`. This will output the meta tags needed for SEO and Google Analytics/Verification configuration.
 
 ```nunjucks
 {% if data.piece %}
@@ -105,3 +139,14 @@ Add the following `include`  to your `<head></head>` in `layout.html` that all o
 ```
 
 If you already have an `extraBody` block in the `notFound.html` view file, you'll only need to add the `{% include "apostrophe-seo:notFound.html" %}` statement somewhere in that.
+
+
+## SEO Page Scan
+
+You can access the SEO page scan modal from pages menu. It performs a SEO scan of the current page to verify that good practices are respected.
+It checks that meta title, description, open graph title and description are all existing, unique and the right length (that you can configure as explained above).
+It also checks that you have only one `<h1>` on the page.
+Finally it allows you to perform scans for links and images.
+For links, it checks that no links lead to 404 responses. To do this, it requests all internal links from the browser, and send external links to a specific route which will request them.
+For images, It checks, for the current page, that every `<img>` tag has an alt attribute. If some are not, It displays them with the appropriate message.
+If the alt attribute exists but is empty it only warns you and displays images too.

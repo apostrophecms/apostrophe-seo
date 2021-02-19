@@ -16,38 +16,90 @@
 {%- block body -%}
 {% set scan = data.scanResult %}
 
-  <div class="data-seo-page-scan-modal">
-    <div class="data-seo-page-scan-modal-body">
-      <h3>Scanned Page: {{ data.url }}</h3>
-
-      <div class="data-seo-page-scan-modal__meta">
-        <h4>Meta</h4>
-        <ul>
-          <li class="data-seo-page-scan-modal__result {% if scan.meta.title.error %}error{% endif %}">
-            {{ scan.meta.title.msg }}
-          </li>
-          <li class="data-seo-page-scan-modal__result {% if scan.meta.description.error %}error{% endif %}">
-            {{ scan.meta.description.msg }}
-          </li>
-        </ul>
+  <div class="scan-modal">
+    <div class="scan-modal-body">
+      <p class="scan-modal-url">
+        {% if data.workflow %}
+          <span class="scan-modal-url__workflow-mode">
+          {% if data.isDraft %}
+            {{ __('Draft') }}
+          {% else %}
+            {{ __('Live') }}
+          {% endif %}
+          </span>
+        {% endif %}
+        {{ data.url }}
+      </p>
+      <h3>{{ __('Meta') }}</h3>
+      <h4>{{ __('Title') }}</h4>
+      <div class="scan-modal__result {% if scan.meta.title.error %}error{% endif %}">
+        <span>{% if scan.meta.title.error %}Fail{% else %}Pass{% endif %}</span>
+        <p>{{ scan.meta.title.msg | safe }}</p>
+        {% if scan.meta.title.elemHtml %}
+          <code>{{ scan.meta.title.elemHtml }}</code>
+        {% endif %}
       </div>
-      <div class="data-seo-page-scan-modal__h1">
-        <h4>H1</h4>
-        <ul>
-          <li class="data-seo-page-scan-modal__result {% if scan.h1.error %}error{% endif %}">
-            {{ scan.h1.msg }}
-          </li>
-        </ul>
+      <h4>{{ __('Description') }}</h4>
+      <div class="scan-modal__result {% if scan.meta.description.error %}error{% endif %}">
+        <span>{% if scan.meta.description.error %}Fail{% else %}Pass{% endif %}</span>
+        <p>{{ scan.meta.description.msg | safe }}</p>
+        {% if scan.meta.description.elemHtml %}
+          <code>{{ scan.meta.description.elemHtml }}</code>
+        {% endif %}
       </div>
-      <div clas="data-seo-page-scan-modal__content-length">
-        <h4>Content Size</h4>
-        <p class="data-seo-page-scan-modal__result {% if scan.contentSize.error %}error{% endif %}">
-          {{ scan.contentSize.msg }}
-        </p>
+      <h3>{{ __('Open Graph') }}</h3>
+      <h4>{{ __('Title') }}</h4>
+      <div class="scan-modal__result {% if scan.ogMeta.title.error %}error{% endif %}">
+        <span>{% if scan.ogMeta.title.error %}Fail{% else %}Pass{% endif %}</span>
+        <p>{{ scan.ogMeta.title.msg | safe}}</p>
+        {% if scan.ogMeta.title.elemHtml %}
+          <code>{{ scan.ogMeta.title.elemHtml }}</code>
+        {% endif %}
       </div>
-      <div class="data-seo-page-scan-modal__dead-links">
-        <h4>Dead Links</h4>
-      {{ buttons.major(__ns('apostrophe', 'Scan'), { action: 'scan-dead-links' }) }}
+      <h4>{{ __('Description') }}</h4>
+      <div class="scan-modal__result {% if scan.ogMeta.description.error %}error{% endif %}">
+        <span>{% if scan.ogMeta.description.error %}Fail{% else %}Pass{% endif %}</span>
+        <p>{{ scan.ogMeta.description.msg | safe }}</p>
+        {% if scan.ogMeta.description.elemHtml %}
+          <code>{{ scan.ogMeta.description.elemHtml }}</code>
+        {% endif %}
+      </div>
+      <h3>{{ __('Content') }}</h3>
+      <h4>{{ __('H1') }}</h4>
+        <div class="scan-modal__result {% if scan.h1.error %}error{% endif %}">
+          <span>{% if scan.h1.error %}Fail{% else %}Pass{% endif %}</span>
+          <p>{{ scan.h1.msg | safe }}</p>
+        </div>
+      <h4>{{ __('Content Size') }}</h4>
+      <div class="scan-modal__result {% if scan.contentSize.error %}error{% endif %}">
+        <span>{% if scan.contentSize.error %}Fail{% else %}Pass{% endif %}</span>
+        <p>{{ scan.contentSize.msg | safe }}</p>
+      </div>
+      <div>
+        <div class="scan-modal-dead-links">
+          <h4>{{ __('URLs') }}</h4>
+          <div class="scan-modal-dead-links__content">
+            <div class="scan-modal-dead-links__results internal">
+              <ul></ul>
+            </div>
+            <div class="scan-modal-dead-links__results external">
+              <ul></ul>
+            </div>
+          </div>
+          {{ buttons.major(__ns('apostrophe', 'Scan'), { action: 'scan-dead-links' }) }}
+        </div>
+        <div class="scan-modal-images">
+          <h4>{{ __('Images') }}</h4>
+          <div class="scan-modal-images__content">
+            <div class="scan-modal-images__results no-alts">
+              <ul></ul>
+            </div>
+            <div class="scan-modal-images__results empty-alts">
+              <ul></ul>
+            </div>
+          </div>
+          {{ buttons.major(__ns('apostrophe', 'Scan'), { action: 'scan-images' }) }}
+        </div>
       </div>
     </div>
   </div>
