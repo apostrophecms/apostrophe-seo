@@ -1,3 +1,6 @@
+# 1.4.0 - 2021-02-11
+- Adds the SEO page scan feature
+
 # 1.3.3 - 2020-11-04
 - Updates `eslint` to `^7.1.0`
 
