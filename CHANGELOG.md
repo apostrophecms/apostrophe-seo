@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 1.4.1 (2021-03-24)
 - Adds a peer dependency for `apostrophe^2.116.1` to support the latest SEO page scan feature.
 
 ## 1.4.0 - 2021-02-11
