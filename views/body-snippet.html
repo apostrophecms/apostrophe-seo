@@ -1,7 +1,9 @@
-{% if data.global.seoGoogleTagManager %}
+{% set seoOverRides = apos.settings.getOption('seoOverRides') %}
+{% set seoGoogleTagManager = seoOverRides.seoGoogleTagManager or data.global.seoGoogleTagManager %}
+{% if seoGoogleTagManager %}
   <!-- Google Tag Manager (noscript) -->
   <noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id={{data.global.seoGoogleTagManager}}"
+    <iframe src="https://www.googletagmanager.com/ns.html?id={{seoGoogleTagManager}}"
     height="0" width="0" style="display:none;visibility:hidden"></iframe>
   </noscript>
   <!-- End Google Tag Manager (noscript) -->
