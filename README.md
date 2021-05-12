@@ -72,6 +72,8 @@ Also, keep in mind that, when accessing the modal, your current url must match t
 
 Some of the rules can be configured from your `apostrophe-seo` declaration.
 
+If you need authentication to access your website, you can also pass headers to the config.
+
 ```js
   'apostrophe-seo': {
     scanRules: {
@@ -92,6 +94,9 @@ Some of the rules can be configured from your `apostrophe-seo` declaration.
         max: 80
       },
       minWordsOnPage: 400
+    },
+    scanHeaders: {
+      // Passing some headers if necessary
     }
   }
 ```
