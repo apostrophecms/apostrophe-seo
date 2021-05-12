@@ -1,7 +1,7 @@
 # Changelog
 
 ## 1.5.0 (2021-05-12)
-- Adds possibility to padd headers in config, if requesting the page need authentication.
+- Adds possibility to set headers in config, if requesting the page needs authentication.
 
 ## 1.4.1 (2021-03-24)
 - Adds a peer dependency for `apostrophe^2.116.1` to support the latest SEO page scan feature.
