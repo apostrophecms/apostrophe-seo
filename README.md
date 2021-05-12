@@ -95,7 +95,7 @@ If you need authentication to access your website, you can also pass headers to 
       },
       minWordsOnPage: 400
     },
-    headers: {
+    scanHeaders: {
       // Passing some headers if necessary
     }
   }
