@@ -2,7 +2,7 @@
 
 ## next
 
-- Add `seo` permission to fine tune access to the page scan for non `admin` users
+- Add `admin-seo` permission to fine tune access to the page scan feature for non `admin` users.
 
 ## 1.5.0 (2021-05-12)
 - Adds possibility to set headers in config, if requesting the page needs authentication.

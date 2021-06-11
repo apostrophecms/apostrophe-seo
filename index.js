@@ -34,5 +34,6 @@ module.exports = {
     self.prependSnippets();
     self.addRoutes();
     self.pushCreateSingleton();
+    self.addPermissions();
   }
 };
