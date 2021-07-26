@@ -155,3 +155,4 @@ Finally it allows you to perform scans for links and images.
 For links, it checks that no links lead to 404 responses. To do this, it requests all internal links from the browser, and send external links to a specific route which will request them.
 For images, It checks, for the current page, that every `<img>` tag has an alt attribute. If some are not, It displays them with the appropriate message.
 If the alt attribute exists but is empty it only warns you and displays images too.
+By default only admins can use the SEO Page Scan button, however you can assign the SEO Page Scan permission to other Apostrophe groups.
