@@ -2,7 +2,7 @@
 
 ## next
 
-- Add `seo-page-scan` permission to fine tune access to the SEO page scan feature for non `admin` users.
+- Add `seo-page-scan` permission to fine tune access to the SEO page scan feature for non-`admin` users. Thanks to [Harouna Traoré](https://harounatraore.com/) for contributing this code.
 
 ## 1.5.0 (2021-05-12)
 - Adds possibility to set headers in config, if requesting the page needs authentication.
