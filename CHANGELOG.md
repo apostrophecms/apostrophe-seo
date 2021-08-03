@@ -1,6 +1,6 @@
 # Changelog
 
-## next
+## 1.6.0 (2021-08-03)
 
 - Add `seo-page-scan` permission to fine tune access to the SEO page scan feature for non-`admin` users. Thanks to [Harouna Traoré](https://harounatraore.com/) for contributing this code.
 
